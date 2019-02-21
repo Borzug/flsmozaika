@@ -39,7 +39,7 @@ export class Pagination extends React.Component<IProps> {
                         </li>
 
                         {pages.map((page, idx) => (
-                            <li key={idx} className={this.checkSelection(page)}>
+                            <li key={idx} className={this.getButtonClass(page)}>
                                 <PaginationLink value={page} changePage={changePage} />
                             </li>
                         ))}
@@ -73,7 +73,7 @@ export class Pagination extends React.Component<IProps> {
         return 1;
     }
 
-    private checkSelection = (page: number) => {
+    private getButtonClass = (page: number) => {
         return this.props.currentPage === page ? "page-item active" : "page-item";
     }
 }
