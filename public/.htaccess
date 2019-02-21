@@ -1,0 +1,28 @@
+
+# BEGIN WordPress
+# Redirect all requests for non-existent files and those not for wp-admin or wp-json
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/wp-admin
+RewriteCond %{REQUEST_URI} !^/wp-json
+RewriteCond %{REQUEST_URI} !^/custom-api
+RewriteCond %{REQUEST_URI} !^/sendpress
+RewriteRule ^(.*)$ https://%{HTTP_HOST} [L,R=301]
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+RewriteCond %{HTTP:PORT} !^443$
+RewriteRule ^(.*)$ https://%{HTTP_HOST} [L,R]
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress

@@ -1,0 +1,11 @@
+.login h1 a {
+    background-image: url('logo.jpg');    
+}
+
+.login #nav {
+    display: none;
+}
+
+.reset-pass {
+    display: none !important;
+}
