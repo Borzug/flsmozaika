@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import 'react-app-polyfill/ie11';
-import i18next from "i18next";
 
 import "./css/app.css";
 import "./css/bootstrap.css";
@@ -21,22 +20,15 @@ import { ScrollOnLocationChange } from "./utils/ScrollOnLocationChange";
 
 const store = configureStore({});
 const cookie = new Cookie();
-const localeCookie = cookie.getCookie("siteLocale") || navigator.language.slice(0, 2);
+const localeCookie = cookie.getCookie("siteLocale")
+const initialLocale = localeCookie ? localeCookie : navigator.language.slice(0, 2);
 const token = cookie.getCookie("token");
 store.dispatch(login({ token }));
 store.dispatch(getNews({}));
 store.dispatch(getNewsCount());
 store.dispatch(getPages({}));
 store.dispatch(getFavorites());
-
-i18next.init({
-	localeCookie,
-	resources: require(`../public/i18next/${localeCookie}.json`)
-});
-
-i18next.changeLanguage(localeCookie);
-
-store.dispatch(setLanguage(localeCookie))
+store.dispatch(setLanguage(initialLocale))
 
 configureDOMPurify();
 

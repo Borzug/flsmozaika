@@ -36,9 +36,7 @@ class Advertisement extends React.PureComponent<IProps> {
                                 <div />
                             ) : (
                                         <span
-                                            dangerouslySetInnerHTML={{
-                                                __html: DOMPurify.sanitize(content)
-                                            }}
+                                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }}
                                         />
                                     )}
                         </small>

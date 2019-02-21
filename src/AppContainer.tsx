@@ -40,7 +40,6 @@ class App extends React.Component<IProps> {
     public render() {
         return (
             <div id="start" className="app container-fluid">
-
                 <div className="row">
                     <Header
                         changeLanguage={this.changeLanguage}
@@ -69,7 +68,6 @@ class App extends React.Component<IProps> {
 
                     <Footer />
                 </div>
-
             </div>
         );
     }
