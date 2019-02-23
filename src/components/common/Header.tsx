@@ -69,7 +69,7 @@ export class Header extends React.Component<IProps, IState> {
                         <Link to="/user">
                             <button
                                 type="button"
-                                className="btn btn-secondary btn-sm mr-2 my-2 my-lg-0 shadowed rounded-0"
+                                className="btn btn-secondary btn-sm btn-profile mr-2 my-2 my-lg-0 shadowed rounded-0"
                                 onClick={getUserData}
                             >
                                 {i18next.t("cabinetButton")}
@@ -78,7 +78,7 @@ export class Header extends React.Component<IProps, IState> {
                     )
                     : (
                         <Link to="/login">
-                            <button type="button" className="btn btn-secondary btn-sm mr-2 my-2 my-lg-0 shadowed rounded-0">
+                            <button type="button" className="btn btn-secondary btn-sm btn-login mr-2 my-2 my-lg-0 shadowed rounded-0">
                                 {i18next.t("login")}
                             </button>
                         </Link>

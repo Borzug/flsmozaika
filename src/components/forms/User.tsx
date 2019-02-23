@@ -7,6 +7,7 @@ import { Action, bindActionCreators, Dispatch } from "redux";
 import * as userActions from "../../store/actions/userActions";
 import { IStore, IUserData, IUserProfile } from "../../store/reducers/initialState";
 import { FormFields } from "../contracts";
+import { Loading } from "../views/Loading";
 import { TextInput } from "./TextInput";
 
 interface IProps {
@@ -18,7 +19,9 @@ interface IProps {
 
 class UserForm extends React.Component<IProps> {
     public render() {
-        const isAdmin = this.props.user.profile.roles && this.props.user.profile.roles.indexOf("administrator") >= 0
+        const { user } = this.props;
+
+        const isAdmin = user && user.profile.roles && user.profile.roles.indexOf("administrator") >= 0
             ? true
             : false;
 
@@ -36,104 +39,105 @@ class UserForm extends React.Component<IProps> {
                             </a>
                         }
 
-                        <form onSubmit={this.submit} className="mb-5">
-                            <div className="form-group row">
-                                <TextInput
-                                    inputSizeClassName="col-md-8 col-lg-9"
-                                    labelClassName="col-md-4 col-lg-3 col-form-label"
-                                    type="text"
-                                    name={FormFields.Username}
-                                    label={i18next.t("profile_user")}
-                                    value={this.props.user.userFormData.nickname}
-                                    onChange={this.handleChange}
-                                    disabled={true}
-                                />
-                            </div>
+                        {user.userFormData.nickname
+                            ? (
+                                <form onSubmit={this.submit} className="mb-5">
+                                    <div className="form-group row">
+                                        <TextInput
+                                            inputSizeClassName="col-md-8 col-lg-9"
+                                            labelClassName="col-md-4 col-lg-3 col-form-label"
+                                            type="text"
+                                            name={FormFields.Username}
+                                            label={i18next.t("profile_user")}
+                                            value={user.userFormData.nickname}
+                                            onChange={this.handleChange}
+                                            disabled={true}
+                                        />
+                                    </div>
 
-                            <div className="form-group row">
-                                <TextInput
-                                    inputSizeClassName="col-md-8 col-lg-9"
-                                    labelClassName="col-md-4 col-lg-3 col-form-label"
-                                    type="text"
-                                    name={FormFields.Nickname}
-                                    label={i18next.t("profile_nickname")}
-                                    value={this.props.user.userFormData.nickname}
-                                    onChange={this.handleChange}
-                                    required={true}
-                                />
-                            </div>
+                                    <div className="form-group row">
+                                        <TextInput
+                                            inputSizeClassName="col-md-8 col-lg-9"
+                                            labelClassName="col-md-4 col-lg-3 col-form-label"
+                                            type="text"
+                                            name={FormFields.Nickname}
+                                            label={i18next.t("profile_nickname")}
+                                            value={user.userFormData.nickname}
+                                            onChange={this.handleChange}
+                                            required={true}
+                                        />
+                                    </div>
 
-                            <div className="form-group row">
-                                <TextInput
-                                    inputSizeClassName="col-md-8 col-lg-9"
-                                    labelClassName="col-md-4 col-lg-3 col-form-label"
-                                    type="text"
-                                    name={FormFields.Name}
-                                    label={i18next.t("profile_name")}
-                                    value={this.props.user.userFormData.name}
-                                    onChange={this.handleChange}
-                                    required={true}
-                                />
-                            </div>
+                                    <div className="form-group row">
+                                        <TextInput
+                                            inputSizeClassName="col-md-8 col-lg-9"
+                                            labelClassName="col-md-4 col-lg-3 col-form-label"
+                                            type="text"
+                                            name={FormFields.Name}
+                                            label={i18next.t("profile_name")}
+                                            value={user.userFormData.name}
+                                            onChange={this.handleChange}
+                                            required={true}
+                                        />
+                                    </div>
 
-                            <div className="form-group row">
-                                <TextInput
-                                    inputSizeClassName="col-md-8 col-lg-9"
-                                    labelClassName="col-md-4 col-lg-3 col-form-label"
-                                    type="email"
-                                    name={FormFields.Email}
-                                    label="Email"
-                                    value={this.props.user.userFormData.email}
-                                    onChange={this.handleChange}
-                                />
-                            </div>
+                                    <div className="form-group row">
+                                        <TextInput
+                                            inputSizeClassName="col-md-8 col-lg-9"
+                                            labelClassName="col-md-4 col-lg-3 col-form-label"
+                                            type="email"
+                                            name={FormFields.Email}
+                                            label="Email"
+                                            value={user.userFormData.email}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
 
-                            <div className="form-group row">
-                                <TextInput
-                                    inputSizeClassName="col-md-8 col-lg-9"
-                                    labelClassName="col-md-4 col-lg-3 col-form-label"
-                                    type="text"
-                                    name={FormFields.Description}
-                                    label={i18next.t("profile_employment")}
-                                    value={this.props.user.userFormData.description}
-                                    onChange={this.handleChange}
-                                />
-                            </div>
+                                    <div className="form-group row">
+                                        <TextInput
+                                            inputSizeClassName="col-md-8 col-lg-9"
+                                            labelClassName="col-md-4 col-lg-3 col-form-label"
+                                            type="text"
+                                            name={FormFields.Description}
+                                            label={i18next.t("profile_employment")}
+                                            value={user.userFormData.description}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
 
-                            <div className="form-check">
-                                <label className="custom-control custom-checkbox mt-3 mb-4">
-                                    <input
-                                        type="checkbox"
-                                        className="custom-control-input"
-                                        onChange={this.handleCheck}
-                                        value={this.props.user.userFormData.meta && this.props.user.userFormData.meta.subscriber}
-                                        defaultChecked={this.props.user.userFormData.meta && this.props.user.userFormData.meta.subscriber}
-                                    />
-                                    <span className="custom-control-indicator" />
-                                    <span className="custom-control-description ml-2">{i18next.t("user_profile_want_notification")}</span>
-                                </label>
-                            </div>
+                                    <div className="form-check">
+                                        <label className="custom-control custom-checkbox mt-3 mb-4">
+                                            <input
+                                                type="checkbox"
+                                                className="custom-control-input"
+                                                onChange={this.handleCheck}
+                                                value={user.userFormData.meta && user.userFormData.meta.subscriber}
+                                                defaultChecked={user.userFormData.meta && user.userFormData.meta.subscriber}
+                                            />
+                                            <span className="custom-control-indicator" />
+                                            <span className="custom-control-description ml-2">{i18next.t("user_profile_want_notification")}</span>
+                                        </label>
+                                    </div>
 
-                            <button
-                                type="submit"
-                                className="btn btn-outline-info rounded-0 shadowed float-left"
-                            >
-                                {i18next.t("profile_save_changes_button")}
-                            </button>
-                            <button
-                                className="btn btn-outline-danger rounded-0 shadowed float-right"
-                                onClick={this.logOut}
-                            >
-                                {i18next.t("exitButton")}
-                            </button>
+                                    <button
+                                        type="submit"
+                                        className="btn btn-outline-info rounded-0 shadowed float-left"
+                                    >
+                                        {i18next.t("profile_save_changes_button")}
+                                    </button>
+                                    <button
+                                        className="btn btn-outline-danger rounded-0 shadowed float-right"
+                                        onClick={this.logOut}
+                                    >
+                                        {i18next.t("exitButton")}
+                                    </button>
+                                </form>
+                            ) : <Loading />
+                        }
 
-                        </form>
-
-                        {!this.props.user.token && <Redirect to="/" />}
-
+                        {!user.token && <Redirect to="/" />}
                     </div>
                 </div>
-
             </div>
         );
     }

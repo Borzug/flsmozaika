@@ -7,6 +7,8 @@ import { Action, bindActionCreators, Dispatch } from "redux";
 
 import * as userActions from "../../store/actions/userActions";
 import { IStore, IUserData } from "../../store/reducers/initialState";
+import { FormFields } from "../contracts";
+import { TextInput } from "./TextInput";
 
 interface IProps {
     user: IUserData;
@@ -53,28 +55,25 @@ class Login extends React.Component<IProps, IState> {
 
                     <form className="mt-4" onSubmit={this.submit}>
                         <div className="form-group">
-                            <label htmlFor="username">{i18next.t("usernameForm")}</label>
-                            <input
+                            <TextInput
                                 type="text"
-                                id="username"
-                                name="log"
-                                className="form-control"
-                                aria-describedby="usernameHelp"
+                                name={FormFields.Username}
+                                label={i18next.t("usernameForm")}
                                 placeholder={i18next.t("usernamePlaceholder")}
-                                onChange={this.handleUsernameChange}
+                                value={this.state.username}
+                                onChange={this.handleChange}
                                 required={true}
                             />
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="password">{i18next.t("passwordForm")}</label>
-                            <input
+                            <TextInput
                                 type="password"
-                                name="pwd"
-                                className="form-control"
-                                id="password"
+                                name={FormFields.Password}
+                                label={i18next.t("passwordForm")}
                                 placeholder={i18next.t("passwordPlaceholder")}
-                                onChange={this.handlePasswordChange}
+                                value={this.state.password}
+                                onChange={this.handleChange}
                                 required={true}
                             />
                         </div>
@@ -114,12 +113,11 @@ class Login extends React.Component<IProps, IState> {
         );
     }
 
-    private handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({ password: e.target.value });
-    }
-
-    private handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({ username: e.target.value });
+    private handleChange = (property: string, value: string) => {
+        this.setState((prevState: IState) => ({
+            ...prevState,
+            [property]: value
+        }));
     }
 
     private handleCheck = () => {

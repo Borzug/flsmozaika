@@ -35,7 +35,7 @@ interface IState {
     fireRedirect: boolean;
 }
 
-class SearchContainer extends React.Component<IProps, IState> {
+class SearchForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
 
@@ -118,4 +118,4 @@ function mapDispatch(dispatch: Dispatch<Action>) {
     };
 }
 
-export const Search = connect(mapState, mapDispatch)(SearchContainer);
+export const Search = connect(mapState, mapDispatch)(SearchForm);

@@ -131,6 +131,14 @@ aside {
     cursor: pointer;
 }
 
+.btn-profile {
+    width: 85px;
+}
+
+.btn-login {
+    width: 65px;
+}
+
 @media (max-width: 767px) {
     html {
         font-size: x-large;
@@ -164,6 +172,13 @@ aside {
     .language-selector {
         top: 59px;
         right: 6px;
+    }
+    .btn-profile {
+        width: 110px;
+    }
+    
+    .btn-login {
+        width: 95px;
     }
 }
 
