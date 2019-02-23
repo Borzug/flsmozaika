@@ -38,7 +38,7 @@ class StaticPage extends React.PureComponent<IProps> {
         );
     }
 
-    private findContent = (page: any) => page.title.rendered === i18next.t(this.props.match.params.path);
+    private findContent = (page: IPage) => page.title.rendered === i18next.t(this.props.match.params.path);
 }
 
 function mapState(state: IStore) {
@@ -53,6 +53,4 @@ function mapDispatch(dispatch: Dispatch<Action>) {
     return bindActionCreators(languageActions, dispatch);
 }
 
-const StaticBodyPage = connect(mapState, mapDispatch)(StaticPage);
-
-export { StaticBodyPage };
+export const StaticBodyPage = connect(mapState, mapDispatch)(StaticPage);

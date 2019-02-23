@@ -21,6 +21,13 @@ export const pendingRequests = (state = initialState.pendingRequests, action: Ac
         case "REQUEST_ARCHIVE_CLOSE":
             return Object.assign({}, state, { archiveRequested: false });
 
+        case "REQUEST_LOGIN":
+            return Object.assign({}, state, { loginRequested: true });
+
+        case "USER_LOGGED_IN":
+        case "LOGIN_FAILED":
+            return Object.assign({}, state, { loginRequested: false });
+
         default:
             return state;
     }

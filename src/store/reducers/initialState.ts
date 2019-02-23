@@ -18,6 +18,7 @@ export interface IPendingRequests {
     newsRequested: boolean;
     archiveRequested: boolean;
     pagesRequested: boolean;
+    loginRequested: boolean;
 }
 
 export interface ISearchData {
@@ -66,7 +67,8 @@ export const initialState: IStore = {
     pendingRequests: {
         newsRequested: false,
         archiveRequested: false,
-        pagesRequested: false
+        pagesRequested: false,
+        loginRequested: false
     },
     search: {
         query: "",

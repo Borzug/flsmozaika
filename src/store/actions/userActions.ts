@@ -62,6 +62,7 @@ export function login({ token, credentials }: ILoginData): any {
                 .catch((error) => window.console.log(error.message));
 
         } else if (credentials) {
+            dispatch(requestLogin());
             return api.login<{ token: string, data: { status: string }, user_display_name: string }>(credentials)
                 .then((response) => {
                     if (response.token) {
@@ -81,6 +82,12 @@ export function login({ token, credentials }: ILoginData): any {
         }
 
         return;
+    };
+}
+
+export function requestLogin() {
+    return {
+        type: "REQUEST_LOGIN"
     };
 }
 
