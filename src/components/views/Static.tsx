@@ -3,7 +3,7 @@ import i18next from "i18next";
 import React from "react";
 import { Redirect } from "react-router";
 
-import { Loading } from "./Loading";
+import { Loading } from "../common/Loading";
 
 interface IProps {
     locale: string;

@@ -20,15 +20,15 @@ import { ScrollOnLocationChange } from "./utils/ScrollOnLocationChange";
 
 const store = configureStore({});
 const cookie = new Cookie();
-const localeCookie = cookie.getCookie("siteLocale")
-const initialLocale = localeCookie ? localeCookie : navigator.language.slice(0, 2);
+const localeCookie = cookie.getCookie("siteLocale");
+const initialLocale = localeCookie ? localeCookie : "RU";
 const token = cookie.getCookie("token");
 store.dispatch(login({ token }));
 store.dispatch(getNews({}));
 store.dispatch(getNewsCount());
 store.dispatch(getPages({}));
 store.dispatch(getFavorites());
-store.dispatch(setLanguage(initialLocale))
+store.dispatch(setLanguage(initialLocale));
 
 configureDOMPurify();
 

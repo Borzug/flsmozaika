@@ -7,8 +7,8 @@ import { Action, bindActionCreators, Dispatch } from "redux";
 
 import * as userActions from "../../store/actions/userActions";
 import { IStore, IUserData } from "../../store/reducers/initialState";
+import { Loading } from "../common/Loading";
 import { FormFields } from "../contracts";
-import { Loading } from "../views/Loading";
 import { TextInput } from "./TextInput";
 
 interface IProps {

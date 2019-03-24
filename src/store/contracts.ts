@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { IPage } from "../components/contracts";
+import { IPage, Locale } from "../components/contracts";
 
 export interface IUserAction extends Action {
     token?: string;
@@ -24,7 +24,7 @@ export interface ICountAction extends Action {
 }
 
 export interface ILocaleAction extends Action {
-    lng?: string;
+    lng?: Locale;
 }
 
 export interface IStore {

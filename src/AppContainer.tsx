@@ -8,6 +8,7 @@ import { AdBlock } from "./components/common/AdBlock";
 import { Footer } from "./components/common/Footer";
 import { Header } from "./components/common/Header";
 import { SideMenu } from "./components/common/SideMenu";
+import { Locale } from "./components/contracts";
 import { LoginForm } from "./components/forms/LoginForm";
 import { RetrievePassword } from "./components/forms/RetrievePassword";
 import { Signup } from "./components/forms/SignupForm";
@@ -20,12 +21,13 @@ import { SearchResults } from "./components/views/SearchResults";
 import { Cookie } from "./Cookie";
 import { setLanguage } from "./store/actions/languageActions";
 import { getUserData } from "./store/actions/userActions";
+import { IUserData } from "./store/contracts";
 import { IStore } from "./store/reducers/initialState";
 
 interface IProps {
-    language: string;
-    user: any;
-    setLanguage: (lng: string) => void;
+    language: Locale;
+    user: IUserData;
+    setLanguage: (lng: Locale) => void;
     getUserData: (token: string) => void;
 }
 
@@ -72,7 +74,7 @@ class App extends React.Component<IProps> {
         );
     }
 
-    private changeLanguage = (lng: string) => {
+    private changeLanguage = (lng: Locale) => {
         this.props.setLanguage(lng);
         this.cookie.setCookie({
             name: "siteLocale",

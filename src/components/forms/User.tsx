@@ -6,8 +6,8 @@ import { Action, bindActionCreators, Dispatch } from "redux";
 
 import * as userActions from "../../store/actions/userActions";
 import { IStore, IUserData, IUserProfile } from "../../store/reducers/initialState";
+import { Loading } from "../common/Loading";
 import { FormFields } from "../contracts";
-import { Loading } from "../views/Loading";
 import { TextInput } from "./TextInput";
 
 interface IProps {
@@ -21,9 +21,7 @@ class UserForm extends React.Component<IProps> {
     public render() {
         const { user } = this.props;
 
-        const isAdmin = user && user.profile.roles && user.profile.roles.indexOf("administrator") >= 0
-            ? true
-            : false;
+        const isAdmin = user && user.profile.roles && user.profile.roles.indexOf("administrator") >= 0;
 
         return (
             <div>

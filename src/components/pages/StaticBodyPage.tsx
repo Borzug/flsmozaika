@@ -6,11 +6,11 @@ import { Action, bindActionCreators, Dispatch } from "redux";
 
 import * as languageActions from "../../store/actions/languageActions";
 import { IPendingRequests, IStore } from "../../store/reducers/initialState";
-import { IPage } from "../contracts";
+import { IPage, Locale } from "../contracts";
 import { Static } from "../views/Static";
 
 interface IProps {
-    locale: string;
+    locale: Locale;
     pages: IPage[];
     loading: IPendingRequests;
     setLanguage: any;

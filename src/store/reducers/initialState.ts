@@ -8,7 +8,7 @@ export interface IStore {
     newsOffset: number;
     pages: IPage[];
     favorites: IPage[];
-    language: string;
+    language: Locale;
     pendingRequests: IPendingRequests;
     search: ISearchData;
     user: IUserData;

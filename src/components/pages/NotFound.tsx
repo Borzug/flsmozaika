@@ -6,7 +6,7 @@ import notfound from "../../assets/404.png";
 import { Locale } from "../contracts";
 
 interface IProps {
-    locale: string;
+    locale: Locale;
     changeLanguage?: () => void;
 }
 

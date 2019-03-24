@@ -7,8 +7,8 @@ import { Action, bindActionCreators, Dispatch } from "redux";
 import * as newsActions from "../../store/actions/newsActions";
 import { INewsRequest } from "../../store/actions/newsActions";
 import { IPendingRequests, IStore } from "../../store/reducers/initialState";
+import { Loading } from "../common/Loading";
 import { IPage } from "../contracts";
-import { Loading } from "../views/Loading";
 import { PostsView } from "../views/PostsView";
 
 interface IProps {

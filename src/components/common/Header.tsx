@@ -9,9 +9,9 @@ import { Search } from "../forms/Search";
 import { LanguageTrigger } from "./LanguageTrigger";
 
 interface IProps {
-    locale: string;
+    locale: Locale;
     user: any;
-    changeLanguage: (lng: string) => void;
+    changeLanguage: (lng: Locale) => void;
     getUserData: () => void;
 }
 
@@ -49,7 +49,7 @@ export class Header extends React.Component<IProps, IState> {
                         className="btn btn-danger btn-sm dropdown-toggle mr-sm-1 mr-md-3 my-2 my-lg-0 mr-2 shadowed rounded-0"
                         onClick={this.toggleLngSelector}
                     >
-                        {locale.toUpperCase()}
+                        {locale}
                     </button>
 
                     <div
@@ -58,9 +58,9 @@ export class Header extends React.Component<IProps, IState> {
                             "language-selector": this.state.isLngSelectorOpened
                         })}
                     >
-                        <LanguageTrigger value={Locale.RU} text="RU" changeLanguage={this.changeLanguage} />
+                        <LanguageTrigger value={Locale.RU} text={Locale.RU} changeLanguage={this.changeLanguage} />
                         <div className="dropdown-divider my-0" />
-                        <LanguageTrigger value={Locale.EN} text="EN" changeLanguage={this.changeLanguage} />
+                        <LanguageTrigger value={Locale.EN} text={Locale.EN} changeLanguage={this.changeLanguage} />
                     </div>
                 </div>
 
@@ -94,7 +94,7 @@ export class Header extends React.Component<IProps, IState> {
         }));
     }
 
-    private changeLanguage = (lng: string) => {
+    private changeLanguage = (lng: Locale) => {
         this.toggleLngSelector();
         this.props.changeLanguage(lng);
     }

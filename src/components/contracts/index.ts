@@ -39,8 +39,8 @@ interface IWPLink {
 }
 
 export enum Locale {
-    RU = "ru",
-    EN = "en"
+    RU = "RU",
+    EN = "EN"
 }
 
 export enum FormFields {

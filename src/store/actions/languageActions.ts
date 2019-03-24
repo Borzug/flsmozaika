@@ -1,17 +1,18 @@
 import i18next from "i18next";
 
+import { Locale } from "../../components/contracts";
+import en from "../../i18next/en.json";
+import ru from "../../i18next/ru.json";
 import { ILocaleAction } from "../contracts";
 
-export function setLanguage(lng: string): ILocaleAction {
+export function setLanguage(lng: Locale): ILocaleAction {
     i18next.init({
-        lng,
-        resources: require(`../../../public/i18next/${lng}.json`)
+        lng: String(lng).toLowerCase(),
+        resources: lng === Locale.RU ? ru : en
     });
 
-    i18next.changeLanguage(lng);
-
     return {
-        type: "LNG_CHANGE",
-        lng
+        lng,
+        type: "LNG_CHANGE"
     };
 }

@@ -5,8 +5,8 @@ import { Action, bindActionCreators, Dispatch } from "redux";
 
 import * as newsActions from "../../store/actions/newsActions";
 import { IPendingRequests, ISearchData, IStore } from "../../store/reducers/initialState";
+import { Loading } from "../common/Loading";
 import { AnnotationsView } from "./AnnotationsView";
-import { Loading } from "./Loading";
 import { PagesView } from "./PagesView";
 import { PostsView } from "./PostsView";
 

@@ -30,22 +30,22 @@ export const SideMenu: React.SFC<IProps> = ({ locale }) => {
                 </div>
 
                 <div>
-                    <a
-                        className="toggle-menu btn btn-block p-0 rounded-0"
+                    <button
+                        className="toggle-menu btn btn-block p-0 rounded-0 hamburger"
                         data-toggle="collapse"
-                        href="#menu-links"
+                        data-target="menu-links"
                         aria-expanded="false"
                         aria-controls="menu-links"
+                        type="button"
                     >
-                        <div className="hamburger align-middle">
+                        <div className="mx-auto">
                             <div className="bar1" />
                             <div className="bar2" />
                             <div className="bar3" />
                         </div>
-                    </a>
+                    </button>
 
                     <div className="collapse show" id="menu-links">
-
                         <Link to="/" className="btn btn-light btn-block rounded-0 border-0 m-0" role="button" >
                             <img className="menu-icon" src={homeIcon} width="20" alt="новости" />
                             &nbsp;&nbsp;

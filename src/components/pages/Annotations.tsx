@@ -8,18 +8,18 @@ import { Action, bindActionCreators, Dispatch } from "redux";
 import { setLanguage } from "../../store/actions/languageActions";
 import { changePage } from "../../store/actions/newsActions";
 import { IPendingRequests, IStore } from "../../store/reducers/initialState";
+import { Loading } from "../common/Loading";
 import { IPage, Locale } from "../contracts";
-import { Loading } from "../views/Loading";
 import { NotFound } from "./NotFound";
 
 interface IProps {
-    locale: string;
+    locale: Locale;
     location: Location;
     pages: IPage[];
     currentPage: number;
     loading: IPendingRequests;
     changePage: (page: number) => void;
-    setLanguage: (lng: string) => void;
+    setLanguage: (lng: Locale) => void;
 }
 
 class AnnotationsPage extends React.Component<IProps> {

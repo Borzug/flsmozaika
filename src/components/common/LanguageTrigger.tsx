@@ -1,9 +1,10 @@
 import * as React from "react";
+import { Locale } from "../contracts";
 
 interface IProps {
-    value: string;
+    value: Locale;
     text?: string;
-    changeLanguage: (lng: string) => void;
+    changeLanguage: (lng: Locale) => void;
 }
 
 export class LanguageTrigger extends React.PureComponent<IProps> {
